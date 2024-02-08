@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Team Podia</title>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta
+      name="csrf-token"
+      content="qQxccX2Vy7ZKVteCdt2B3Z5eBFcDVFNTUlVgYddhx4mZX9-Bii2IQbpAl4H-YCqUFy1y4RDjbxHKk_kmP8aLZA"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=0"
+    />
+    <meta
+      name="action-cable-url"
+      content="wss://community.podia.com/cable"
+      data-messaging-enabled="false"
+    />
+    <meta name="turnstile-site-key" content="0x4AAAAAAAJ5kwYW6AH1ybLx" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/podia/features/podia-creator-community/podia-creator-community.html"
+    />
+
+
+    <meta
+      property="og:image"
+      content="https://d31ezp3r8jwmks.cloudfront.net/tbd2i7bdwjpyztkpuw2kbpykl99p"
+    />
+
+    <meta property="og:title" content="Team Podia" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:title" content="Team Podia" />
+
+    <meta
+      name="twitter:image:src"
+      content="https://d31ezp3r8jwmks.cloudfront.net/tbd2i7bdwjpyztkpuw2kbpykl99p"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.podia.com/assets/storefront-60a12febaeb1c674eff418da23962b141f3fa932aa322a3098abf6bb56b1fa59.css"
+      data-turbo-track="reload"
+    />
+
+    <style id="custom-storefront-styles">
+      .messaging-header {
+        background-color: #5d3ac5;
+        color: #fff;
+        fill: #fff;
+      }
+      .conversation-bubble-background {
+        background: #5d3ac5;
+      }
+      .unread .conversation-bubble-background svg {
+        fill: #5d3ac5;
+      }
+      .conversation-bubble-icon {
+        fill: #fff;
+      }
+      .conversation-bubble {
+        position: fixed;
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 101;
+      }
+      .conversation-bubble-background {
+        position: relative;
+        z-index: 103;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+      }
+      .conversation-bubble-background svg {
+        display: none;
+      }
+      .conversation-bubble-shadow {
+        position: absolute;
+        z-index: 102;
+        top: -8px;
+        left: -16px;
+        width: 88px;
+        height: 88px;
+        background-size: 88px 88px;
+      }
+      .conversation-bubble-icon {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 32px;
+        height: 32px;
+        z-index: 111;
+      }
+      .conversation-dismiss-icon {
+        fill: #fff;
+      }
+      .conversation-dismiss-icon path {
+        stroke: #fff;
+      }
+      .unread .conversation-bubble-background {
+        background: none;
+      }
+      .unread .conversation-bubble-background svg {
+        display: block;
+        width: 56px;
+        height: 56px;
+      }
+      .unread:after {
+        position: absolute;
+        z-index: 103;
+        left: 43px;
+        top: 3px;
+        width: 10px;
+        height: 10px;
+        content: "";
+        background: #e24646;
+        border-radius: 50%;
+      }
+      .messaging-chat-window {
+        width: 380px;
+        height: 480px;
+        position: fixed;
+        right: 20px;
+        bottom: 100px;
+        box-sizing: border-box;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15),
+          0px 7px 40px 2px rgba(148, 149, 150, 0.3);
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: 0.3s ease-in-out;
+        border-radius: 12px;
+        z-index: 112;
+      }
+      @media screen and (max-width: 420px), screen and (max-height: 590px) {
+        .messaging-chat-window {
+          width: 100%;
+          height: 100%;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          border-radius: 0;
+          z-index: 1143;
+        }
+      }
+      .messaging-message-list ::-webkit-scrollbar {
+        display: none;
+        height: 344px;
+        min-height: 200px;
+        overflow-y: scroll;
+        background-color: white;
+        background-size: 100%;
+        overflow: hidden;
+        position: relative;
+        z-index: 113;
+      }
+      @media screen and (max-width: 420px), screen and (max-height: 590px) {
+        .messaging-message-list {
+          overflow-x: hidden;
+          height: 100%;
+        }
+      }
+      .messaging-header {
+        height: 100%;
+        max-height: 70px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding: 16px;
+        position: relative;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        z-index: 114;
+        -webkit-box-shadow: 0px 2px 4px rgba(41, 37, 51, 0.1);
+        box-shadow: 0px 2px 4px rgba(41, 37, 51, 0.1);
+      }
+      @media screen and (max-width: 420px), screen and (max-height: 590px) {
+        .messaging-header {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
+      .messaging-header--img {
+        border-radius: 50%;
+      }
+      .messaging-header--user {
+        display: grid;
+        width: 100%;
+      }
+      .messaging-header--user-name {
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .messaging-header--user-status {
+        align-self: center;
+        border-radius: 5px;
+        font-size: 14px;
+        line-height: 1;
+      }
+      .messaging-header--dismiss {
+        align-self: center;
+        display: none;
+      }
+      @media screen and (max-width: 420px), screen and (max-height: 590px) {
+        .messaging-header--dismiss {
+          display: block;
+        }
+      }
+      .messaging-user-input--container {
+        display: flex;
+        align-items: flex-start;
+        -webkit-box-shadow: 0px -2px 4px rgba(41, 37, 51, 0.1);
+        box-shadow: 0px -2px 4px rgba(41, 37, 51, 0.1);
+        z-index: 114;
+      }
+      .messaging-user-input--text {
+        width: 100%;
+        line-height: 1.5em;
+        resize: none;
+        border: none;
+        outline: none;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        box-sizing: border-box;
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 400;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        color: #565867;
+        -webkit-font-smoothing: antialiased;
+        overflow: scroll;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+      .messaging-user-input--send-btn {
+        height: 35px;
+        min-width: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin: 1rem 1rem 0 0;
+        background-color: #5d3ac5;
+      }
+      .messaging-user-input--send-btn svg path {
+        stroke: #fff;
+      }
+      .message {
+        background-color: #edf0f2;
+        border-radius: 12px 12px 12px 4px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 14px;
+      }
+      .message.customer {
+        color: #fff;
+        background-color: #5d3ac5;
+        border-radius: 12px 12px 4px 12px;
+      }
+      .message.bg-danger {
+        background-color: #8a1c1c;
+        color: white;
+      }
+      .dots {
+        align-items: center;
+        display: flex;
+        gap: 0.25rem;
+      }
+      .typing {
+        padding: 1rem;
+      }
+      .typing .dot {
+        background: #6e7577;
+      }
+      .dot {
+        display: block;
+        border-radius: 0.5rem;
+        height: 0.5rem;
+        width: 0.5rem;
+        animation: typingAnimation 1s infinite ease-in-out;
+      }
+      @keyframes typingAnimation {
+        0% {
+          transform: translateY(0px);
+        }
+        28% {
+          transform: translateY(-0.25rem);
+        }
+        44% {
+          transform: translateY(0px);
+        }
+      }
+      .dot:nth-child(1) {
+        animation-delay: 200ms;
+      }
+      .dot:nth-child(2) {
+        animation-delay: 300ms;
+      }
+      .dot:nth-child(3) {
+        animation-delay: 400ms;
+      }
+      .text-sentence::first-letter {
+        text-transform: uppercase;
+      }
+      .visitor-email-capture-btn {
+        background-color: #5d3ac5;
+      }
+      .visitor-email-capture-btn svg path {
+        stroke: #fff;
+      }
+      .messaging-chat {
+        font-family: var(--system-font);
+      }
+      .messaging-chat .pt2 {
+        padding-top: 6.25px !important;
+      }
+      .messaging-chat .pb2 {
+        padding-bottom: 6.25px !important;
+      }
+      .messaging-chat .mb3 {
+        margin-bottom: 9.375px !important;
+      }
+      .messaging-chat .pl3 {
+        padding-left: 9.375px !important;
+      }
+      .messaging-chat .pr3 {
+        padding-right: 9.375px !important;
+      }
+      .messaging-chat .pl4 {
+        padding-left: 12.5px !important;
+      }
+      .messaging-chat .pr4 {
+        padding-right: 12.5px !important;
+      }
+      .messaging-chat .mb1 {
+        margin-bottom: 3.125px !important;
+      }
+      .messaging-chat .mr2 {
+        margin-right: 6.25px !important;
+      }
+      .messaging-chat .text-gray {
+        color: #8599a9;
+      }
+      .messaging-chat .text-muted {
+        color: #a09ea2 !important;
+      }
+      .btn-primary {
+        color: #fff;
+        background-color: #5d3ac5;
+        border-color: rgba(0, 0, 0, 0);
+      }
+      .btn-primary:focus,
+      .btn-primary.focus {
+        color: #fff;
+        background-color: #4a2e9e;
+        border-color: rgba(0, 0, 0, 0);
+      }
+      .btn-primary:hover {
+        color: #fff;
+        background-color: #4a2e9e;
+        border-color: rgba(0, 0, 0, 0);
+      }
+      .btn-primary:active,
+      .btn-primary.active,
+      .open > .btn-primary.dropdown-toggle {
+        color: #fff;
+        background-color: #4a2e9e;
+        background-image: none;
+        border-color: rgba(0, 0, 0, 0);
+      }
+      .btn-primary:active:hover,
+      .btn-primary:active:focus,
+      .btn-primary.focus:active,
+      .btn-primary.active:hover,
+      .btn-primary.active:focus,
+      .btn-primary.active.focus,
+      .open > .btn-primary.dropdown-toggle:hover,
+      .open > .btn-primary.dropdown-toggle:focus,
+      .open > .btn-primary.dropdown-toggle.focus {
+        color: #fff;
+        background-color: #3d2682;
+        border-color: rgba(0, 0, 0, 0);
+      }
+      .btn-primary.disabled:hover,
+      .btn-primary.disabled:focus,
+      .btn-primary.disabled.focus,
+      .btn-primary[disabled]:hover,
+      .btn-primary[disabled]:focus,
+      .btn-primary.focus[disabled],
+      fieldset[disabled] .btn-primary:hover,
+      fieldset[disabled] .btn-primary:focus,
+      fieldset[disabled] .btn-primary.focus {
+        background-color: #5d3ac5;
+        border-color: rgba(0, 0, 0, 0);
+      }
+      .btn-primary .badge {
+        color: #5d3ac5;
+        background-color: #fff;
+      }
+      a {
+        color: #5d3ac5;
+      }
+      a:hover,
+      a:focus,
+      a:active {
+        color: #5434b1;
+      }
+      .text-primary,
+      a.text-muted:hover {
+        color: #5d3ac5;
+      }
+      .bg-primary,
+      .bg-confetti-primary,
+      .user-course-pager .btn:hover {
+        background: #5d3ac5;
+      }
+      .product-card-image.bg-primary:hover {
+        background-color: #5434b1;
+      }
+      .navbar-default .navbar-nav > li > a:hover,
+      .navbar-default .navbar-nav > li > a:focus,
+      .navbar-default .navbar-nav > li > a:active,
+      .navbar-default .navbar-nav > .active > a,
+      .navbar-default .navbar-nav > .active > a:hover,
+      .navbar-default .navbar-nav > .active > a:focus,
+      .navbar-default .navbar-nav > .open > a,
+      .navbar-default .navbar-nav > .open > a:hover,
+      .navbar-default .navbar-nav > .open > a:focus,
+      .nav-tabs > li > a:hover {
+        color: #5d3ac5;
+      }
+      #user-site-course-sidebar .block-link a.active,
+      #user-site-course-sidebar .block-link a:hover {
+        border-color: #5d3ac5;
+      }
+      .form-control.focused,
+      .form-control:focus {
+        border-color: #5d3ac5;
+      }
+      .nav-tabs > li > a:hover,
+      .nav-tabs > li > a:active,
+      .nav-tabs > li > a:focus {
+        color: #5d3ac5;
+      }
+      .nav-tabs > li.active > a,
+      .nav-tabs > li.active > a:hover,
+      .nav-tabs > li.active > a:active,
+      .nav-tabs > li.active > a:focus {
+        border-color: #5d3ac5;
+      }
+      svg.stroke-primary * {
+        stroke: #5d3ac5;
+      }
+      svg.fill-primary * {
+        fill: #5d3ac5;
+      }
+      .comment.creator-comment img {
+        box-shadow: 0 0 0 2px white, 0 0 0 4px #5d3ac5;
+      }
+      code {
+        color: #4a2e9e;
+      }
+      .quiz-question
+        .quiz-answer-list
+        .quiz-answer-list-item.unanswered.chosen:before {
+        background: #5d3ac5;
+      }
+      .quiz-question
+        .quiz-answer-list
+        .quiz-answer-list-item.unanswered.chosen:before,
+      .quiz-question
+        .quiz-answer-list
+        .quiz-answer-list-item.unanswered.unanswered:hover:before {
+        border-color: #5d3ac5;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Muli:400|Lato:700"
+    />
+
+    <style>
+      :root {
+        font-size: 18px;
+      }
+    </style>
+
+    <meta name="turbo-cache-control" />
+
+    <meta name="google-analytics-id" content="UA-56617317-4" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-56617317-4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+    </script>
+    <!-- End Global site tag (gtag.js) - Google Analytics -->
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="//fast.wistia.com/assets/external/E-v1.js"></script>
+
+    <script
+      src="https://cdn.podia.com/assets/user-site-43960ed93229b75e0ea5ace2cf6dc1c8428e277a10a4bd8a98829d037eb0b6c0.js"
+      data-turbo-track="reload"
+    ></script>
+    <script
+      src="https://cdn.podia.com/assets/storefront-74905fc6ea956b1353d8575e5a575b010372ccb2b19062011ec75583442683f1.js"
+      data-turbo-track="reload"
+    ></script>
+    <script type="text/javascript">
+      Podia.Customer = null;
+    </script>
+
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+  </head>
+
+  <body class="user-site">
+    <div>
+      <div
+        id="page_header"
+        class="react-page-header"
+        style=""
+        data-controller="editor--page-section"
+      >
+        <div
+          data-react-class="creator_ui/section_adapters/Header"
+          data-react-props='{"features":{"siteEditorColors":true},"theme":{"background":{},"colors":{"id":2981569,"colors":{"sectionBackground":"#ffffff","heading1":"#0D161B","heading2":"#0D161B","heading3":"#0D161B","subtitle":"#0D161B","pretitle":"#0D161B","pretitleAccent":"#5D3AC5","paragraphText":"#0D161B","paragraphSubtext":"#0D161B","paragraphLinks":"#0D161B","buttonLabel":"#ffffff","buttonBackground":"#5d3ac5","inputBackground":"#ffffff","inputText":"#0D161B","cardBackground":"#ffffff","cardHeading1":"#0D161B","cardHeading2":"#0D161B","cardHeading3":"#0D161B","cardSubtitle":"#0D161B","cardPretitle":"#0D161B","cardPretitleAccent":"#5D3AC5","cardParagraphText":"#0D161B","cardParagraphSubtext":"#0D161B","cardParagraphLinks":"#0D161B","cardButtonLabel":"#ffffff","cardButtonBackground":"#5d3ac5","cardInputBackground":"#ffffff","cardInputText":"#0D161B","overlayBackground":"#ffffff","overlayHeading1":"#0D161B","overlayHeading2":"#0D161B","overlayHeading3":"#0D161B","overlaySubtitle":"#0D161B","overlayPretitle":"#0D161B","overlayPretitleAccent":"#5D3AC5","overlayParagraphText":"#0D161B","overlayParagraphSubtext":"#0D161B","overlayParagraphLinks":"#0D161B","overlayButtonLabel":"#ffffff","overlayButtonBackground":"#5d3ac5","overlayInputBackground":"#ffffff","overlayInputText":"#0D161B","accent1":"#5d3ac5","codeblockText":"#1A262D","codeblockBackground":"#1A262D","inputBorder":"#1A262D"}},"fonts":{"families":["Muli:400","Lato:700"],"styles":{"preheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"headingFont":{"family":"Lato","weight":"700","spacing":"0","height":"1.25","case":"none"},"subheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"bodyFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":null},"buttonFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"navigationFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"}},"sizes":{"headingFont":{"h1":2,"h2":1.5,"h3":1.25},"bodyFont":{"md":1,"sm":0.8},"buttonFont":{"md":1,"sm":0.8},"navigationFont":{"md":0.8}},"baseFontSize":"18"},"structure":{"globalCardCorners":0.5,"globalCardShadowOpacity":0.04,"globalCardShadowDepth":4.0,"globalGap":1.0,"globalVerticalPadding":2.25,"globalWidth":970,"sectionCardCorners":null,"sectionCardShadowOpacity":null,"sectionCardShadowDepth":null,"sectionGap":null,"sectionVerticalPadding":1.25,"sectionWidth":null}},"authenticationLinks":{"login":{"name":"Login","url":"/login"},"logout":{"name":"Logout","url":"/logout"}},"currentUser":null,"dashboardLinks":[],"headerLinks":{"1049338":{"id":1049338,"name":"Home","position":0,"value":"https://www.podia.com/","target":null,"visible":true},"1049339":{"id":1049339,"name":"Examples","position":1,"value":"https://www.podia.com/examples","target":null,"visible":true},"1049340":{"id":1049340,"name":"Blog","position":2,"value":"https://www.podia.com/articles","target":null,"visible":true},"1049341":{"id":1049341,"name":"Resources","position":3,"value":"https://www.podia.com/resources","target":null,"visible":true}},"id":"page_header","layout":"default","logo":"https://d31ezp3r8jwmks.cloudfront.net/h9uit87x4rhgn1pfam0n7cgod1rv","logoAltText":null,"showBorder":false,"showHeader":true,"showLoginButton":true,"sidebarActive":false,"site":{"name":"Team Podia","url":"/"},"storefrontLogo":"https://d31ezp3r8jwmks.cloudfront.net/a4ivyvdcgv3bbs7suov074zghi5a","userLinks":[{"name":"Affiliate","url":"/customer/affiliate"},{"name":"Settings","url":"/customer/settings/edit"}],"aspectRatio":"natural","headerAlignment":null,"mediaCorners":"hard","mediaMobileFullWidth":null,"mediaStyle":null,"mediaWidth":0.4,"mediaPlacement":null,"textAlignment":null}'
+          data-react-cache-id="creator_ui/section_adapters/Header-0"
+        ></div>
+      </div>
+
+      <div data-controller="page-data"></div>
+      <div id="page_section_container" class="page-sections page-page-sections">
+        <div id="page_section_46830767" class="react-page-section">
+          <div
+            data-react-class="creator_ui/section_adapters/Text"
+            data-react-props='{"features":{"siteEditorColors":true},"theme":{"background":{"blend":"normal","blur":0,"contrast":75,"grayscale":100,"opacity":38,"url":null},"colors":{"id":2981574,"colors":{"sectionBackground":"#ffffff","heading1":"#1a262d","heading2":"#1a262d","heading3":"#1a262d","subtitle":"#1a262d","pretitle":"#1a262d","pretitleAccent":"#5D3AC5","paragraphText":"#1a262d","paragraphSubtext":"#1a262d","paragraphLinks":"#1a262d","buttonLabel":"#ffffff","buttonBackground":"#5d3ac5","inputBackground":"#ffffff","inputText":"#0D161B","cardBackground":"#ffffff","cardHeading1":"#1a262d","cardHeading2":"#1a262d","cardHeading3":"#1a262d","cardSubtitle":"#1a262d","cardPretitle":"#1a262d","cardPretitleAccent":"#5D3AC5","cardParagraphText":"#1a262d","cardParagraphSubtext":"#1a262d","cardParagraphLinks":"#1a262d","cardButtonLabel":"#ffffff","cardButtonBackground":"#5d3ac5","cardInputBackground":"#ffffff","cardInputText":"#0D161B","overlayBackground":"#ffffff","overlayHeading1":"#1a262d","overlayHeading2":"#1a262d","overlayHeading3":"#1a262d","overlaySubtitle":"#1a262d","overlayPretitle":"#1a262d","overlayPretitleAccent":"#5D3AC5","overlayParagraphText":"#1a262d","overlayParagraphSubtext":"#1a262d","overlayParagraphLinks":"#1a262d","overlayButtonLabel":"#ffffff","overlayButtonBackground":"#5d3ac5","overlayInputBackground":"#ffffff","overlayInputText":"#0D161B","accent1":"#5d3ac5","codeblockText":"#1A262D","codeblockBackground":"#1A262D","inputBorder":"#1A262D"}},"fonts":{"families":["Muli:400","Lato:700"],"styles":{"preheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"headingFont":{"family":"Lato","weight":"700","spacing":"0","height":"1.25","case":"none"},"subheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"bodyFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":null},"buttonFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"navigationFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"}},"sizes":{"headingFont":{"h1":2,"h2":1.5,"h3":1.25},"bodyFont":{"md":1,"sm":0.8},"buttonFont":{"md":1,"sm":0.8},"navigationFont":{"md":0.8}},"baseFontSize":"18"},"structure":{"globalCardCorners":0.5,"globalCardShadowOpacity":0.04,"globalCardShadowDepth":4.0,"globalGap":1.0,"globalVerticalPadding":2.25,"globalWidth":970,"sectionCardCorners":null,"sectionCardShadowOpacity":null,"sectionCardShadowDepth":null,"sectionGap":null,"sectionVerticalPadding":null,"sectionWidth":null}},"preheading":"","heading":"Join the Podia Creator Community","subheading":"","id":46830767,"domId":"rich_text_page_section_46830767","button":{"text":"JOIN THE COMMUNITY","url":"https://community.podia.com/community/6/monthly/buy","target":"_self"},"button2":{"text":"","url":"","target":"_self"},"buttonSubtext":"","aspectRatio":null,"headerAlignment":null,"mediaCorners":null,"mediaMobileFullWidth":null,"mediaStyle":"media-style-card","mediaWidth":null,"mediaPlacement":null,"textAlignment":"center","text":"\u003cdiv\u003eBeing a creator can feel like a lonely journey – but it doesn’t have to be.\u0026nbsp;\u003cbr\u003e\u003cbr\u003e\n\u003c/div\u003e\u003cul\u003e\n\u003cli\u003eConnect and network with creators just like you.\u0026nbsp;\u003c/li\u003e\n\u003cli\u003eBounce ideas off one another and get feedback on your latest projects.\u003c/li\u003e\n\u003cli\u003eCollaborate with like-minded entrepreneurs.\u003c/li\u003e\n\u003c/ul\u003e"}'
+            data-react-cache-id="creator_ui/section_adapters/Text-0"
+          ></div>
+        </div>
+        <div id="page_section_46830774" class="react-page-section">
+          <div
+            data-react-class="creator_ui/section_adapters/Video"
+            data-react-props='{"features":{"siteEditorColors":true},"theme":{"background":{"blend":"normal","blur":0,"contrast":75,"grayscale":100,"opacity":38,"url":null},"colors":{"id":2981581,"colors":{"sectionBackground":"#ffffff","heading1":"#1a262d","heading2":"#1a262d","heading3":"#1a262d","subtitle":"#1a262d","pretitle":"#1a262d","pretitleAccent":"#5D3AC5","paragraphText":"#1a262d","paragraphSubtext":"#1a262d","paragraphLinks":"#1a262d","buttonLabel":"#ffffff","buttonBackground":"#5d3ac5","inputBackground":"#ffffff","inputText":"#0D161B","cardBackground":"#ffffff","cardHeading1":"#1a262d","cardHeading2":"#1a262d","cardHeading3":"#1a262d","cardSubtitle":"#1a262d","cardPretitle":"#1a262d","cardPretitleAccent":"#5D3AC5","cardParagraphText":"#1a262d","cardParagraphSubtext":"#1a262d","cardParagraphLinks":"#1a262d","cardButtonLabel":"#ffffff","cardButtonBackground":"#5d3ac5","cardInputBackground":"#ffffff","cardInputText":"#0D161B","overlayBackground":"#ffffff","overlayHeading1":"#1a262d","overlayHeading2":"#1a262d","overlayHeading3":"#1a262d","overlaySubtitle":"#1a262d","overlayPretitle":"#1a262d","overlayPretitleAccent":"#5D3AC5","overlayParagraphText":"#1a262d","overlayParagraphSubtext":"#1a262d","overlayParagraphLinks":"#1a262d","overlayButtonLabel":"#ffffff","overlayButtonBackground":"#5d3ac5","overlayInputBackground":"#ffffff","overlayInputText":"#0D161B","accent1":"#5d3ac5","codeblockText":"#1A262D","codeblockBackground":"#1A262D","inputBorder":"#1A262D"}},"fonts":{"families":["Muli:400","Lato:700"],"styles":{"preheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"headingFont":{"family":"Lato","weight":"700","spacing":"0","height":"1.25","case":"none"},"subheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"bodyFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":null},"buttonFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"navigationFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"}},"sizes":{"headingFont":{"h1":2,"h2":1.5,"h3":1.25},"bodyFont":{"md":1,"sm":0.8},"buttonFont":{"md":1,"sm":0.8},"navigationFont":{"md":0.8}},"baseFontSize":"18"},"structure":{"globalCardCorners":0.5,"globalCardShadowOpacity":0.04,"globalCardShadowDepth":4.0,"globalGap":1.0,"globalVerticalPadding":2.25,"globalWidth":970,"sectionCardCorners":null,"sectionCardShadowOpacity":null,"sectionCardShadowDepth":null,"sectionGap":null,"sectionVerticalPadding":null,"sectionWidth":null}},"preheading":"","heading":"","subheading":"","id":46830774,"domId":"video_page_section_46830774","button":{"text":"","url":"","target":null},"button2":{"text":"","url":"","target":null},"buttonSubtext":"","aspectRatio":null,"headerAlignment":null,"mediaCorners":"small","mediaMobileFullWidth":true,"mediaStyle":"media-style-plain","mediaWidth":0.85,"mediaPlacement":"top-center","textAlignment":"center","customThumbnail":"https://d31ezp3r8jwmks.cloudfront.net/q3rz897c468m3ypzet7a8gqh95fj","playerColor":"#5d3ac5","text":null,"wistiaId":"oikiq07qt3"}'
+            data-react-cache-id="creator_ui/section_adapters/Video-0"
+          ></div>
+        </div>
+      </div>
+
+      <div
+        id="page_footer"
+        class="react-page-footer"
+        data-controller="editor--page-section"
+      >
+        <div
+          data-react-class="creator_ui/section_adapters/Footer"
+          data-react-props='{"features":{"siteEditorColors":true},"theme":{"background":{"blend":"normal","blur":0,"contrast":75,"grayscale":100,"opacity":38,"url":null},"colors":{"id":2981569,"colors":{"sectionBackground":"#ffffff","heading1":"#0D161B","heading2":"#0D161B","heading3":"#0D161B","subtitle":"#0D161B","pretitle":"#0D161B","pretitleAccent":"#5D3AC5","paragraphText":"#0D161B","paragraphSubtext":"#0D161B","paragraphLinks":"#0D161B","buttonLabel":"#ffffff","buttonBackground":"#5d3ac5","inputBackground":"#ffffff","inputText":"#0D161B","cardBackground":"#ffffff","cardHeading1":"#0D161B","cardHeading2":"#0D161B","cardHeading3":"#0D161B","cardSubtitle":"#0D161B","cardPretitle":"#0D161B","cardPretitleAccent":"#5D3AC5","cardParagraphText":"#0D161B","cardParagraphSubtext":"#0D161B","cardParagraphLinks":"#0D161B","cardButtonLabel":"#ffffff","cardButtonBackground":"#5d3ac5","cardInputBackground":"#ffffff","cardInputText":"#0D161B","overlayBackground":"#ffffff","overlayHeading1":"#0D161B","overlayHeading2":"#0D161B","overlayHeading3":"#0D161B","overlaySubtitle":"#0D161B","overlayPretitle":"#0D161B","overlayPretitleAccent":"#5D3AC5","overlayParagraphText":"#0D161B","overlayParagraphSubtext":"#0D161B","overlayParagraphLinks":"#0D161B","overlayButtonLabel":"#ffffff","overlayButtonBackground":"#5d3ac5","overlayInputBackground":"#ffffff","overlayInputText":"#0D161B","accent1":"#5d3ac5","codeblockText":"#1A262D","codeblockBackground":"#1A262D","inputBorder":"#1A262D"}},"fonts":{"families":["Muli:400","Lato:700"],"styles":{"preheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"headingFont":{"family":"Lato","weight":"700","spacing":"0","height":"1.25","case":"none"},"subheadingFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"bodyFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":null},"buttonFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"},"navigationFont":{"family":"Muli","weight":"400","spacing":"0.05","height":"1.85","case":"none"}},"sizes":{"headingFont":{"h1":2,"h2":1.5,"h3":1.25},"bodyFont":{"md":1,"sm":0.8},"buttonFont":{"md":1,"sm":0.8},"navigationFont":{"md":0.8}},"baseFontSize":"18"},"structure":{"globalCardCorners":0.5,"globalCardShadowOpacity":0.04,"globalCardShadowDepth":4.0,"globalGap":1.0,"globalVerticalPadding":2.25,"globalWidth":970,"sectionCardCorners":null,"sectionCardShadowOpacity":null,"sectionCardShadowDepth":null,"sectionGap":null,"sectionVerticalPadding":null,"sectionWidth":null}},"id":"page-footer","domId":"footer_975282","logo":"https://d31ezp3r8jwmks.cloudfront.net/grpth8vsnfb7xt5wgjs40hp7mp0m","logoAltText":null,"showBranding":true,"branding":{"preStrapline":"powered by","strapline":"Get your free website","url":"https://www.podia.com?utm_medium=poweredby\u0026utm_source=footer"},"privacy":{"text":"Privacy Policy","url":"https://community.podia.com/privacy"},"terms":{"text":"Terms of Service","url":"https://community.podia.com/terms"},"links":{"251443":{"id":251443,"name":"Home","position":0,"value":"https://www.podia.com","target":null,"visible":true},"251444":{"id":251444,"name":"Features","position":1,"value":"https://www.podia.com/features","target":null,"visible":true},"251445":{"id":251445,"name":"Examples","position":2,"value":"https://www.podia.com/examples","target":null,"visible":true},"251446":{"id":251446,"name":"Resources","position":3,"value":"https://www.podia.com/resources","target":null,"visible":true}},"text":"\u003cdiv\u003eWe help creators make a living off their passions.\u003c/div\u003e","socialLinks":{"414249":{"id":414249,"service":"twitter","value":"https://twitter.com/podia"},"414250":{"id":414250,"service":"facebook","value":"https://www.facebook.com/podiadotcom"},"414251":{"id":414251,"service":"youtube","value":"https://www.youtube.com/c/PodiaTV"},"414252":{"id":414252,"service":"website","value":"https://www.podia.com/"},"414253":{"id":414253,"service":"mail","value":"mailto:hello@podia.com"}},"emailForm":{"emailValue":null,"nameValue":null,"emailPlaceholder":"Email","namePlaceholder":"Name","action":"/email_lists/42/subscriptions?page_section_id=footer","id":"page-footer","title":"","text":"","buttonText":"","withName":false},"showBorder":false,"sidebarActive":false,"aspectRatio":"natural","headerAlignment":null,"mediaCorners":"hard","mediaMobileFullWidth":null,"mediaStyle":null,"mediaWidth":0.2,"mediaPlacement":null,"textAlignment":"left"}'
+          data-react-cache-id="creator_ui/section_adapters/Footer-0"
+        ></div>
+      </div>
+
+      <script
+        async
+        src="https://r.wdfl.co/rw.js"
+        data-rewardful="31fc32"
+      ></script>
+      <script>
+        var searchParams = new URLSearchParams(location.search);
+        var irclickid = searchParams.get("irclickid");
+        if (irclickid) {
+          document.cookie = "irclickid=" + irclickid + ";domain=.podia.com";
+        }
+      </script>
+
+      <!-- Panelbear -->
+      <script
+        async
+        src="https://cdn.panelbear.com/analytics.js?site=FvSGSRUjzRD"
+      ></script>
+      <script>
+        window.panelbear =
+          window.panelbear ||
+          function () {
+            (window.panelbear.q = window.panelbear.q || []).push(arguments);
+          };
+        panelbear("config", { site: "FvSGSRUjzRD" });
+      </script>
+    </div>
+    <script type="text/javascript">
+      _linkedin_partner_id = "5441602";
+      window._linkedin_data_partner_ids =
+        window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    </script>
+    <script type="text/javascript">
+      (function (l) {
+        if (!l) {
+          window.lintrk = function (a, b) {
+            window.lintrk.q.push([a, b]);
+          };
+          window.lintrk.q = [];
+        }
+        var s = document.getElementsByTagName("script")[0];
+        var b = document.createElement("script");
+        b.type = "text/javascript";
+        b.async = true;
+        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+        s.parentNode.insertBefore(b, s);
+      })(window.lintrk);
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        alt=""
+        src="https://px.ads.linkedin.com/collect/?pid=5441602&fmt=gif"
+      />
+    </noscript>
+  </body>
+</html>
